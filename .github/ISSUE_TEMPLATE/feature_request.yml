@@ -1,0 +1,69 @@
+name: Feature request
+description: Suggest a capability, integration, or workflow improvement
+title: 'feat: '
+labels: ['enhancement', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please open a feature request before submitting a large pull request, so the design can be agreed on first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem are you trying to solve? Describe the workflow, not just the missing command.
+      placeholder: When a track spans two packages, ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should SpecVibe do? Include commands, flags, or file formats if relevant.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing workarounds, other tools, or simpler options.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Track lifecycle
+        - Scanner
+        - Context packs
+        - Git safety / revert
+        - Agent integration
+        - CLI / output
+        - Configuration
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and compatibility
+      description: Would this change existing files, state, or agent behavior? Does it require a new dependency?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I searched existing issues and discussions and did not find a duplicate.
+          required: true
+        - label: This request fits SpecVibe's local-first, zero-runtime-dependency design.
+          required: true

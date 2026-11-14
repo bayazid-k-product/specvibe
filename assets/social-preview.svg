@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title">
+  <title id="title">SpecVibe — spec-driven governance for AI coding agents</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070d18"/>
+      <stop offset="0.55" stop-color="#0b1a2a"/>
+      <stop offset="1" stop-color="#0f2f3f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="0.55" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1100" cy="90" r="210" fill="#38bdf8" opacity="0.08"/>
+  <circle cx="150" cy="590" r="230" fill="#818cf8" opacity="0.08"/>
+  <g transform="translate(110 176)">
+    <rect width="180" height="180" rx="42" fill="#0d1b2b" stroke="url(#accent)" stroke-width="6"/>
+    <path d="M90 30 142 51v36c0 31-20 53-52 66-32-13-52-35-52-66V51L90 30Z"
+          fill="none" stroke="url(#accent)" stroke-width="7" stroke-linejoin="round"/>
+    <path d="m68 92 15 15 30-34" fill="none" stroke="#e6fffb" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="330" y="262" fill="#f8fafc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">SpecVibe</text>
+  <text x="332" y="318" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30">Spec-driven governance for AI coding agents</text>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24" fill="#cbd5e1">
+    <rect x="332" y="366" width="142" height="48" rx="24" fill="#102a3a" stroke="#1e4d63"/>
+    <text x="362" y="398">Propose</text>
+    <rect x="496" y="366" width="148" height="48" rx="24" fill="#102a3a" stroke="#1e4d63"/>
+    <text x="524" y="398">Approve</text>
+    <rect x="666" y="366" width="120" height="48" rx="24" fill="#102a3a" stroke="#1e4d63"/>
+    <text x="694" y="398">Apply</text>
+    <rect x="808" y="366" width="126" height="48" rx="24" fill="#102a3a" stroke="#1e4d63"/>
+    <text x="830" y="398">Unify</text>
+    <rect x="956" y="366" width="140" height="48" rx="24" fill="#102a3a" stroke="#1e4d63"/>
+    <text x="978" y="398">Revert</text>
+  </g>
+  <text x="332" y="486" fill="#64748b" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24">OpenCode · Claude Code · Cursor · Gemini CLI · Windsurf · Copilot</text>
+</svg>
