@@ -1,6 +1,6 @@
 {
   "name": "specvibe",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Spec-driven governance and context management for AI coding agents. Plan, apply, unify.",
   "type": "module",
   "license": "MIT",

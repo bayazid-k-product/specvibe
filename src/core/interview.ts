@@ -127,14 +127,16 @@ export function applyInterviewAnswers(content: string, answers: InterviewAnswers
     next = replaceDescriptionPlaceholder(next, answers.description);
   }
   if (answers.stack?.length) {
-    next = replacePrefixedLine(next, '**Stack:**', `**Stack:** ${answers.stack.join(', ')}`);
+    const stack = answers.stack.join(', ');
+    for (const prefix of ['**Stack:**', '**Tech stack:**']) {
+      next = replacePrefixedLine(next, prefix, `${prefix} ${stack}`);
+    }
   }
   if (answers.frameworks?.length) {
-    next = replacePrefixedLine(
-      next,
-      '**Frameworks:**',
-      `**Frameworks:** ${answers.frameworks.join(', ')}`,
-    );
+    const frameworks = answers.frameworks.join(', ');
+    for (const prefix of ['**Frameworks:**', '**Frameworks and major tools:**']) {
+      next = replacePrefixedLine(next, prefix, `${prefix} ${frameworks}`);
+    }
   }
   if (answers.entryPoints?.length) {
     next = replacePrefixedLine(

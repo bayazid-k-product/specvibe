@@ -12,6 +12,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Richer scan heuristics for monorepos and polyglot repositories.
 - Optional pack caching and per-track context profiles.
 
+## [0.2.1] — 2026-11-15
+
+### Fixed
+
+- Guided answers now also replace the `**Tech stack:**` and `**Frameworks and major tools:**` lines in `constitution.md`, so a refreshed setup no longer keeps `Unknown` there.
+
 ## [0.2.0] — 2026-11-15
 
 ### Added

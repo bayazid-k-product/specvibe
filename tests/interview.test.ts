@@ -74,6 +74,29 @@ describe('applyInterviewAnswers', () => {
   it('leaves a document untouched when there are no answers', () => {
     expect(applyInterviewAnswers(contextDocument, {})).toBe(contextDocument);
   });
+
+  it('patches the constitution wording for the same facts', () => {
+    const constitution = [
+      '# Project Constitution — demo',
+      '',
+      '**Tech stack:** Unknown',
+      '',
+      '**Frameworks and major tools:** None detected',
+      '',
+      '**Entry points:** None detected',
+    ].join('\n');
+
+    const patched = applyInterviewAnswers(constitution, {
+      stack: ['HTML', 'CSS'],
+      frameworks: ['Bootstrap'],
+      entryPoints: ['index.html'],
+    });
+
+    expect(patched).toContain('**Tech stack:** HTML, CSS');
+    expect(patched).toContain('**Frameworks and major tools:** Bootstrap');
+    expect(patched).toContain('**Entry points:** index.html');
+    expect(patched).not.toContain('Unknown');
+  });
 });
 
 describe('applyAnswersToProject', () => {
