@@ -29,7 +29,11 @@
 
 ---
 
+## Why this exists
+
 AI agents are excellent at producing code and terrible at remembering why. They forget the architecture, duplicate helpers, skip tests, rewrite files you did not ask them to touch, and leave you with no clean way to undo a bad afternoon.
+
+I wrote SpecVibe after the third time an agent "finished" a feature I never asked for, in a file I had just cleaned up. The answer was not a better prompt — it was writing the plan down, in the repository, where it can be reviewed before anyone types a line of code. That is all this tool is: a small, boring, local-first layer that turns intent into a contract the agent has to follow, and gives you a way back when it does not.
 
 SpecVibe gives every agent the same repository contract:
 
@@ -117,6 +121,42 @@ If the work goes sideways, preview a rollback and then execute it:
 specvibe revert add-csv-export        # dry run: shows commits, files, and dirty state
 specvibe revert add-csv-export --yes  # backup branch + stash + reset + archive
 ```
+
+## Let your agent install it
+
+The fastest way to try SpecVibe is to let the agent you already use set it up. There is **one prompt**, not one per tool: the setup runs through the CLI, so the same text works in OpenCode, Claude Code, Cursor, Gemini CLI, Windsurf, Copilot Chat, or anything else with a terminal.
+
+Paste this into your agent and send it as-is:
+
+```text
+Set up SpecVibe in this repository.
+
+1. Read https://github.com/bayazid-k-product/specvibe and docs/getting-started.md
+   so you know what the tool does before touching this repo.
+2. Confirm Node.js >= 22.12.0 and git are available, then run
+   `npx specvibe@latest init` from the repository root.
+3. Read the generated .specvibe/README.md, constitution.md, and context.md.
+4. Report back: the detected stack, the scan summary, and which agent files
+   were generated. Do not write feature code, do not start a track, and do
+   not commit.
+5. Tell me the single command I should run next, then stop and wait.
+```
+
+| Agent                | Where to paste it                             |
+| -------------------- | --------------------------------------------- |
+| **OpenCode**         | `opencode` in the repo, then the prompt input |
+| **Claude Code**      | `claude` in the repo, then the prompt input   |
+| **Cursor**           | Chat panel (`Cmd/Ctrl + L`)                   |
+| **Gemini CLI**       | `gemini` in the repo, then the prompt input   |
+| **Windsurf / Devin** | Cascade panel                                 |
+| **GitHub Copilot**   | Copilot Chat panel                            |
+| **Anything else**    | Any chat that can run terminal commands       |
+
+What the prompt tells the agent **not** to do matters as much as the rest. It may inspect and initialize; it may not write feature code, commit, or invent decisions on your behalf. Review the generated `.specvibe/` files before you approve anything.
+
+After `init`, the same agent gets native commands — `/sv:propose`, `/sv:apply`, `/sv:unify`, and the rest — so the following steps are a few keystrokes instead of paragraphs.
+
+Prefer to keep the install to yourself? `npx specvibe init` does exactly the same thing. The prompt just saves you the typing.
 
 ## How it works
 
