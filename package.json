@@ -5,13 +5,13 @@
   "type": "module",
   "license": "MIT",
   "author": "SpecVibe Contributors",
-  "homepage": "https://github.com/specvibe/specvibe#readme",
+  "homepage": "https://github.com/bayazid-k-product/specvibe#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/specvibe/specvibe.git"
+    "url": "git+https://github.com/bayazid-k-product/specvibe.git"
   },
   "bugs": {
-    "url": "https://github.com/specvibe/specvibe/issues"
+    "url": "https://github.com/bayazid-k-product/specvibe/issues"
   },
   "keywords": [
     "ai",

@@ -23,7 +23,7 @@ Requirements:
 - Git (needed for the apply/revert lifecycle tests)
 
 ```bash
-git clone https://github.com/specvibe/specvibe.git
+git clone https://github.com/bayazid-k-product/specvibe.git
 cd specvibe
 npm ci
 npm run check

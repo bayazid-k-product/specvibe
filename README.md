@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/specvibe/specvibe/main/assets/logo.svg" alt="SpecVibe" width="120" />
+  <img src="https://raw.githubusercontent.com/bayazid-k-product/specvibe/main/assets/logo.svg" alt="SpecVibe" width="120" />
 </p>
 
 <h1 align="center">SpecVibe</h1>
@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/specvibe"><img src="https://img.shields.io/npm/v/specvibe.svg" alt="npm version" /></a>
   <a href="https://www.npmjs.com/package/specvibe"><img src="https://img.shields.io/npm/dm/specvibe.svg" alt="npm downloads" /></a>
-  <a href="https://github.com/specvibe/specvibe/actions/workflows/ci.yml"><img src="https://github.com/specvibe/specvibe/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/bayazid-k-product/specvibe/actions/workflows/ci.yml"><img src="https://github.com/bayazid-k-product/specvibe/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" /></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D22.12-339933.svg" alt="Node.js >= 22.12" /></a>
 </p>
@@ -360,7 +360,7 @@ For most automation, prefer `runCli(['status', '--json'])` or executing the `spe
 ## Development
 
 ```bash
-git clone https://github.com/specvibe/specvibe.git
+git clone https://github.com/bayazid-k-product/specvibe.git
 cd specvibe
 npm ci
 npm run dev -- init          # run the CLI from source

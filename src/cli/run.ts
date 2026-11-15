@@ -99,7 +99,7 @@ function printHumanError(error: unknown, logger: Logger, debug: boolean): void {
     process.stderr.write(`${error.stack}\n`);
   } else {
     process.stderr.write(
-      '  hint: Re-run with --debug for a stack trace, and report the issue at https://github.com/specvibe/specvibe/issues\n',
+      '  hint: Re-run with --debug for a stack trace, and report the issue at https://github.com/bayazid-k-product/specvibe/issues\n',
     );
   }
 }

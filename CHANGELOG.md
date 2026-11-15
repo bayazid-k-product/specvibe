@@ -41,5 +41,5 @@ The first public release. SpecVibe is a zero-dependency, local-first CLI for spe
 - Unsafe operations (`--force`, `--allow-dirty`, `--allow-no-git`, `revert --yes`) are explicit and documented.
 - Revert preserves recoverable history through backup branches and stashes.
 
-[Unreleased]: https://github.com/specvibe/specvibe/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/specvibe/specvibe/releases/tag/v0.1.0
+[Unreleased]: https://github.com/bayazid-k-product/specvibe/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/bayazid-k-product/specvibe/releases/tag/v0.1.0
