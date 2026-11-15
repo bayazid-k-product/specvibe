@@ -5,6 +5,13 @@ import { detectAgents, parseAgentList, syncAgents } from '../core/agents.js';
 import { loadConfig, normalizeConfig, saveConfig, writeDefaultConfig } from '../core/config.js';
 import { SpecVibeError } from '../core/errors.js';
 import { ensureDir, pathExists, readText, writeText } from '../core/fs.js';
+import {
+  applyAnswersToProject,
+  applyInterviewAnswers,
+  canInterview,
+  type InterviewAnswers,
+  interviewProject,
+} from '../core/interview.js';
 import { projectPaths } from '../core/paths.js';
 import { detectProject } from '../core/project.js';
 import { ensureScan, loadScanResult } from '../core/scanner.js';
@@ -30,6 +37,8 @@ export interface InitializeOptions {
   writeAgents: boolean;
   force: boolean;
   repair: boolean;
+  /** Ask the human a few questions to fill in what detection could not. */
+  interview?: boolean;
 }
 
 export interface InitializeResult {
@@ -41,6 +50,7 @@ export interface InitializeResult {
   detectedAgents: AgentId[];
   agentResult: AgentSyncResult | null;
   scan: ScanResult | null;
+  interview: InterviewAnswers;
   files: {
     constitution: string;
     context: string;
@@ -148,11 +158,17 @@ export async function initializeProject(
   }
 
   const detectedProject = await detectProject(root);
-  const project: ProjectInfo = {
+  const detectedInfo: ProjectInfo = {
     ...detectedProject,
     name: options.name?.trim() || detectedProject.name,
     description: options.description?.trim() || detectedProject.description,
   };
+
+  let interview: InterviewAnswers = {};
+  if (options.interview) {
+    interview = await interviewProject(detectedInfo);
+  }
+  const project: ProjectInfo = applyAnswersToProject(detectedInfo, interview);
 
   let config: SpecVibeConfig;
   if (existing && (await pathExists(paths.config))) {
@@ -214,6 +230,16 @@ export async function initializeProject(
   await writeIfMissing(paths.decisions, await renderTemplate('decisions.md', {}));
   await writeIfMissing(paths.readme, await renderTemplate('specvibe-readme.md', {}));
 
+  // Documents written by an earlier run keep the human's edits; only the
+  // generated placeholder lines are replaced with the new answers.
+  if (Object.keys(interview).length) {
+    for (const file of [paths.constitution, paths.context]) {
+      const current = await readText(file, '');
+      const patched = applyInterviewAnswers(current, interview);
+      if (patched !== current) await writeText(file, patched);
+    }
+  }
+
   let scan: ScanResult | null = null;
   if (options.scan) {
     scan = await ensureScan(root, config, undefined, project);
@@ -242,6 +268,7 @@ export async function initializeProject(
     detectedAgents,
     agentResult,
     scan,
+    interview,
     files: {
       constitution: paths.constitution,
       context: paths.context,
@@ -292,6 +319,9 @@ export function renderInitialization(
     logger.keyValue('Agent files', `${created} created, ${updated} updated, ${skipped} skipped`);
     for (const warning of result.agentResult.warnings) logger.warn(warning);
   }
+  if (Object.keys(result.interview).length) {
+    logger.keyValue('Context', 'filled from your answers');
+  }
 
   logger.write('');
   logger.heading('Generated:');
@@ -322,6 +352,8 @@ export async function runInit(context: CommandContext): Promise<{ exitCode?: num
     writeAgents: !flagBoolean(context.flags, 'no-agents'),
     force: flagBoolean(context.flags, 'force'),
     repair: false,
+    interview:
+      !flagBoolean(context.flags, 'no-input') && !context.json && !context.quiet && canInterview(),
   });
 
   emit(
@@ -357,6 +389,7 @@ export async function runInit(context: CommandContext): Promise<{ exitCode?: num
             orphans: result.scan.orphans.length,
           }
         : null,
+      interview: result.interview,
       files: result.files,
       nextSteps: [
         'Review .specvibe/constitution.md and .specvibe/context.md',

@@ -12,6 +12,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Richer scan heuristics for monorepos and polyglot repositories.
 - Optional pack caching and per-track context profiles.
 
+## [0.2.0] — 2026-11-15
+
+### Added
+
+- **Guided init** — `specvibe init` and `specvibe setup` ask a few plain questions on a terminal (what the project does, stack, frameworks, entry points) and write the answers into `constitution.md` and `context.md`. Projects without a manifest no longer start at `Stack: Unknown`. Every question keeps the detected value as its default, and `--no-input` skips the prompts for scripts and CI.
+
 ## [0.1.0] — 2026-11-14
 
 The first public release. SpecVibe is a zero-dependency, local-first CLI for spec-driven governance of AI coding agents.

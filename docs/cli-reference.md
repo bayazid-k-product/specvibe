@@ -75,6 +75,7 @@ Initialize SpecVibe in a repository. Creates `.specvibe/`, detects the stack, sc
 | `--description <text>` | Override the detected project description. |
 | `--no-scan` | Skip the initial scan. |
 | `--no-agents` | Write only the `.specvibe/` baseline. |
+| `--no-input` | Skip the guided questions and use the detected values (scripts, CI). |
 | `--force` | Repair missing generated files and refresh the setup. Preserves constitution, context, and decisions. |
 
 Examples:

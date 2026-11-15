@@ -1,6 +1,7 @@
 import { emit } from '../cli/output.js';
 import { type CommandContext, flagBoolean, flagString } from '../cli/types.js';
 import { parseAgentList } from '../core/agents.js';
+import { canInterview } from '../core/interview.js';
 import { initializeProject, renderInitialization } from './init.js';
 
 export async function runSetup(context: CommandContext): Promise<{ exitCode?: number }> {
@@ -15,6 +16,8 @@ export async function runSetup(context: CommandContext): Promise<{ exitCode?: nu
     writeAgents: !flagBoolean(context.flags, 'no-agents'),
     force: flagBoolean(context.flags, 'force'),
     repair: true,
+    interview:
+      !flagBoolean(context.flags, 'no-input') && !context.json && !context.quiet && canInterview(),
   });
 
   emit(
@@ -44,6 +47,7 @@ export async function runSetup(context: CommandContext): Promise<{ exitCode?: nu
             languages: result.scan.stats.languages,
           }
         : null,
+      interview: result.interview,
       files: result.files,
       nextSteps: [
         'Interview the user and refine .specvibe/constitution.md and .specvibe/context.md',

@@ -79,6 +79,11 @@ const INIT_FLAGS: FlagDefinition[] = [
     type: 'boolean',
     description: 'Write the .specvibe baseline but skip agent integration files.',
   },
+  {
+    name: 'no-input',
+    type: 'boolean',
+    description: 'Skip the guided questions and use the detected values (non-interactive runs).',
+  },
   FORCE_FLAG,
 ];
 
@@ -95,6 +100,7 @@ export const COMMAND_SPECS: CommandSpec[] = [
     ],
     notes: [
       'Creates .specvibe/, detects your stack, scans the codebase, and generates native agent files.',
+      'On a terminal, init asks a few plain questions (what the project does, stack, frameworks, entry points) and writes the answers into constitution.md and context.md. Pass --no-input to skip them.',
       'Re-running with --force repairs missing files, rescans, and refreshes generated agent files without overwriting your constitution or context.',
     ],
   },
