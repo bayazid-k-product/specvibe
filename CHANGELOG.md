@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Planned
+
+- More agent adapters and community-contributed templates.
+- Richer scan heuristics for monorepos and polyglot repositories.
+- Optional pack caching and per-track context profiles.
+
+## [0.2.2] — 2026-11-16
+
 ### Added
 
 - **PowerShell quickstart** — `docs/powershell-quickstart.md` takes a Windows user from installing the CLI to closing the terminal: install, git identity, the guided questions, the first track, unify, revert, and the errors a first run actually produces.
@@ -18,12 +26,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - `status` and `doctor` no longer describe a repository without commits as `detached at` with an empty hash; they report `no commits yet`.
 - `apply --allow-no-git` no longer claims that a checkpoint was created; it says the track is applying without one.
-
-### Planned
-
-- More agent adapters and community-contributed templates.
-- Richer scan heuristics for monorepos and polyglot repositories.
-- Optional pack caching and per-track context profiles.
 
 ## [0.2.1] — 2026-11-15
 
@@ -66,5 +68,6 @@ The first public release. SpecVibe is a zero-dependency, local-first CLI for spe
 - Unsafe operations (`--force`, `--allow-dirty`, `--allow-no-git`, `revert --yes`) are explicit and documented.
 - Revert preserves recoverable history through backup branches and stashes.
 
-[Unreleased]: https://github.com/bayazid-k-product/specvibe/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/bayazid-k-product/specvibe/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/bayazid-k-product/specvibe/releases/tag/v0.2.2
 [0.1.0]: https://github.com/bayazid-k-product/specvibe/releases/tag/v0.1.0
