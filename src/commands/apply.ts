@@ -18,6 +18,20 @@ function shortCommit(commit: string): string {
   return commit === 'no-git' ? 'none' : commit.slice(0, 7);
 }
 
+/**
+ * A track started with --allow-no-git has no checkpoint, so it must not claim
+ * one was created.
+ */
+function renderStart(context: CommandContext, meta: TrackMeta): void {
+  if (meta.checkpoint?.commit === 'no-git') {
+    context.logger.success(
+      'Track is now applying without a git checkpoint; revert will be unavailable.',
+    );
+    return;
+  }
+  context.logger.success('Checkpoint created; track is now applying.');
+}
+
 async function ensureApplying(
   context: CommandContext,
   meta: TrackMeta,
@@ -256,7 +270,7 @@ export async function runApply(context: CommandContext): Promise<{ exitCode?: nu
       },
       () => {
         logger.title(`Track "${meta.slug}"`);
-        if (started) logger.success('Checkpoint created; track is now applying.');
+        if (started) renderStart(context, meta);
         logger.success(`Completed ${result.item.id ?? 'item'}: ${result.item.text}`);
         logger.write('');
         renderProgress(context, meta, progress);
@@ -290,7 +304,7 @@ export async function runApply(context: CommandContext): Promise<{ exitCode?: nu
       },
       () => {
         logger.title(`Track "${meta.slug}"`);
-        if (started) logger.success('Checkpoint created; track is now applying.');
+        if (started) renderStart(context, meta);
         logger.success(`Verified ${result.item.id ?? 'acceptance criterion'}: ${result.item.text}`);
         logger.write('');
         renderProgress(context, meta, progress);
@@ -326,14 +340,11 @@ export async function runApply(context: CommandContext): Promise<{ exitCode?: nu
     () => {
       logger.title(`Track "${meta.slug}"`);
       if (started) {
-        logger.success('Checkpoint created; track is now applying.');
-        if (meta.checkpoint?.dirtyAtCheckpoint) {
+        renderStart(context, meta);
+        if (meta.checkpoint?.commit !== 'no-git' && meta.checkpoint?.dirtyAtCheckpoint) {
           logger.warn(
             'The working tree was dirty when this track started. Revert will not restore those pre-existing uncommitted changes.',
           );
-        }
-        if (meta.checkpoint?.commit === 'no-git') {
-          logger.warn('No git checkpoint exists. Revert will be unavailable for this track.');
         }
       }
       renderProgress(context, meta, progress);

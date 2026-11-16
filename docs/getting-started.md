@@ -25,11 +25,11 @@ Or install it globally:
 ```bash
 npm install -g specvibe
 specvibe init
-# short alias
-sv init
 ```
 
 The package exposes two binaries, `specvibe` and `sv`, with identical behavior.
+
+> **Windows PowerShell:** use `specvibe`, not `sv`. PowerShell already defines `sv` as an alias for `Set-Variable`, so `sv init` looks like it worked but runs nothing. `sv.cmd init` also works. See the [PowerShell quickstart](powershell-quickstart.md) for a complete first run.
 
 ## Initialize a repository
 
@@ -46,6 +46,10 @@ specvibe init --agents opencode,claude,cursor
 specvibe init --agents all
 specvibe init --agents none
 ```
+
+On a terminal, `init` also asks four short questions — what the project does, the stack, the frameworks, and the entry points. Detection can read manifests but not intent, so a project without one would otherwise start at `Stack: Unknown`. Every question shows the detected value as its default: press Enter to accept it, or type `skip` to clear it. The answers are written into `constitution.md` and `context.md`. Use `--no-input` to skip the questions in scripts and CI.
+
+Already initialized? Run `specvibe setup` to answer the questions again and refresh the scan and agent files; it preserves what you already wrote.
 
 What this creates:
 

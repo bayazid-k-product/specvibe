@@ -71,8 +71,10 @@ npx specvibe init
 
 # Or install it once
 npm install -g specvibe
-sv init
+specvibe init
 ```
+
+> **Windows PowerShell:** call the CLI as `specvibe`. PowerShell defines `sv` as an alias for `Set-Variable`, so `sv init` prints nothing and does nothing — use `specvibe init` or `sv.cmd init`. The [PowerShell quickstart](docs/powershell-quickstart.md) covers install through closing the terminal.
 
 `init` detects your stack and existing agent integrations, writes `.specvibe/`, scans the repository, and generates the right instruction and command files. Review the generated constitution and context, then plan your first feature:
 
@@ -236,6 +238,8 @@ Managed files (`AGENTS.md`, `CLAUDE.md`, and similar) keep user content outside 
 | `specvibe apply <track> --next`                     | Show the next unchecked item without changing state.                                                                                                                                                                            |
 | `specvibe apply <track> --done <ID>`                | Complete one task or completion item. Gates need `--confirm-gate`. `--force` skips order for one item.                                                                                                                          |
 | `specvibe apply <track> --accept <AC-ID>`           | Mark one verified acceptance criterion complete.                                                                                                                                                                                |
+| `specvibe apply <track> --allow-dirty`              | Start the track from uncommitted work. Revert will not restore those pre-existing changes.                                                                                                                                      |
+| `specvibe apply <track> --allow-no-git`             | Start without a git repository. No checkpoint is created, so `revert` is unavailable.                                                                                                                                           |
 | `specvibe unify [track]`                            | Verify all checks, write the summary, archive the track, and append decisions. `--force` requires explicit user consent.                                                                                                        |
 | `specvibe pack [track]`                             | Build a token-budgeted context pack. `--max-tokens`, `--out`, `--stdout`.                                                                                                                                                       |
 | `specvibe status [track]`                           | Read-only view of tracks, progress, git state, scan age, and the next safe action.                                                                                                                                              |
@@ -246,6 +250,8 @@ Managed files (`AGENTS.md`, `CLAUDE.md`, and similar) keep user content outside 
 | `specvibe help [command]`                           | Show command help.                                                                                                                                                                                                              |
 
 Every command supports `--json` for scripts and agents, plus `--cwd <dir>`, `--quiet`, `--no-color`, and `--debug`.
+
+Aliases: `sv` mirrors every command, and `setup` also answers to `reinit`, `propose` to `plan`. On Windows PowerShell, call `specvibe` or `sv.cmd` — PowerShell already defines `sv` as an alias for `Set-Variable`.
 
 ## The track lifecycle
 
@@ -416,6 +422,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for architecture notes, test conventions,
 ## Documentation
 
 - [Getting started](docs/getting-started.md)
+- [PowerShell quickstart](docs/powershell-quickstart.md)
 - [The SpecVibe workflow](docs/workflow.md)
 - [Agent integrations](docs/agents.md)
 - [CLI reference](docs/cli-reference.md)

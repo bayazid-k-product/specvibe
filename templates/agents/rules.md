@@ -27,6 +27,10 @@ specvibe status
 specvibe revert <track>
 ```
 
+### Windows and PowerShell
+
+Call the CLI as `specvibe`. In Windows PowerShell, `sv` is a built-in alias for `Set-Variable`, so `sv <command>` silently does nothing; use `specvibe <command>` or `sv.cmd <command>`. Quote paths that contain spaces.
+
 ### Non-negotiables
 
 - **No feature code before approval.** Planning and documentation only until the user approves the track.

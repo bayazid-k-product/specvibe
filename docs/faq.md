@@ -28,6 +28,10 @@ SpecVibe uses modern ESM, `node:fs/promises`, and current test tooling. Node 22.
 
 Yes. Windows, macOS, and Linux are supported. The test suite runs the full lifecycle on all three in CI. Paths, git refs, and archive names are sanitized for Windows, including reserved device names.
 
+### Why does `sv --version` print nothing on Windows?
+
+Because Windows PowerShell ships an alias named `sv` for `Set-Variable`, and aliases take precedence over executables. Nothing is broken: call `specvibe --version` instead, or `sv.cmd --version` if you want the short name. The [PowerShell quickstart](powershell-quickstart.md) uses `specvibe` everywhere.
+
 ## Setup and storage
 
 ### What exactly gets created by `init`?

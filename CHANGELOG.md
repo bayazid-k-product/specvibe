@@ -6,6 +6,19 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Added
+
+- **PowerShell quickstart** — `docs/powershell-quickstart.md` takes a Windows user from installing the CLI to closing the terminal: install, git identity, the guided questions, the first track, unify, revert, and the errors a first run actually produces.
+
+### Changed
+
+- The README, getting-started guide, CLI reference, FAQ, and the generated agent rules now state that `sv` is a built-in PowerShell alias for `Set-Variable`, so Windows users are told to call `specvibe` (or `sv.cmd`).
+
+### Fixed
+
+- `status` and `doctor` no longer describe a repository without commits as `detached at` with an empty hash; they report `no commits yet`.
+- `apply --allow-no-git` no longer claims that a checkpoint was created; it says the track is applying without one.
+
 ### Planned
 
 - More agent adapters and community-contributed templates.

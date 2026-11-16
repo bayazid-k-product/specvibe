@@ -64,7 +64,7 @@ export async function runDoctor(context: CommandContext): Promise<{ exitCode?: n
       ? 'not installed or not on PATH'
       : !git.isRepo
         ? 'git is available but this directory is not a repository'
-        : `${git.branch ?? 'detached'} at ${(git.head ?? '').slice(0, 7)}${git.clean ? ' (clean)' : ` (${git.statusLines} changed)`}`,
+        : `${git.head ? `${git.branch ?? 'detached HEAD'} at ${git.head.slice(0, 7)}` : 'no commits yet'}${git.clean ? ' (clean)' : ` (${git.statusLines} changed)`}`,
   });
 
   add({

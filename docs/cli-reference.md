@@ -5,6 +5,8 @@ specvibe <command> [options]
 sv <command> [options]
 ```
 
+> **Windows PowerShell:** use `specvibe` (or `sv.cmd`). PowerShell already defines `sv` as an alias for `Set-Variable`, so the `sv` binary is shadowed and produces no output.
+
 Run `specvibe help` for the command list or `specvibe help <command>` for details. Every command also accepts `--help`.
 
 ## Global options

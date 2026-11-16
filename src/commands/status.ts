@@ -117,7 +117,8 @@ function formatGit(git: GitInfo): string {
   if (!git.available) return 'git is not installed or not on PATH';
   if (!git.isRepo) return 'not a git repository';
   const state = git.clean ? 'clean' : `dirty (${pluralize(git.statusLines ?? 0, 'changed file')})`;
-  return `${git.branch ?? 'detached'} at ${shortCommit(git.head)} — ${state}`;
+  if (!git.head) return `no commits yet — ${state}`;
+  return `${git.branch ?? 'detached HEAD'} at ${shortCommit(git.head)} — ${state}`;
 }
 
 export async function runStatus(context: CommandContext): Promise<{ exitCode?: number }> {
